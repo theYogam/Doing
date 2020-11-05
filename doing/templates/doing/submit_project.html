@@ -1,0 +1,86 @@
+{% extends 'website/base.html' %}
+{% load static humanize i18n %}
+
+{% block page_title %}<title>{% trans "Submit your project - Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
+
+{% block head_style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.11.05">
+    <link href="{% static 'ikwen/css/uploader-single.css' %}?v=20.8.17" media="screen" rel="stylesheet" type="text/css" />
+    <style>
+        body {background: #fff}
+        #navbar:not(active) {background: transparent!important;}
+        #navbar.active{background: #312782!important;}
+        #navbar li a:hover {color: #ffe004!important;}
+        #navbar.active #user-menu li a:not(:hover) {color: #312782!important;}
+        
+        @media (min-width: 768px ) {
+            #navbar li a:not(:hover) {color: #fff!important;}
+        }
+    </style>
+{% endblock %}
+
+{% block head_js %}
+    {{ block.super }}
+    <script src="{% static 'ikwen/ajaxuploader/js/fileuploader.js' %}"></script>
+{% endblock %}
+
+
+{% block header_brand %}
+    <a class="navbar-brand hidden-xs" href="{{ service.url }}">
+        <img src="{% static "doing/img/doing-white-01.png" %}" alt="doing-logo" style="height: 40px; z-index: 1000">
+    </a>
+    <strong class="navbar-brand visible-xs">{{ service.project_name }}</strong>
+{% endblock %}
+
+{% block content %}
+    <div class="submit-project">
+        <div class="banner">
+            <div class="banner-inner">
+                <h1 class="text-center text-has-shade">{% trans 'Submit your project' %}</h1>
+            </div>
+        </div>
+        <div id="admin-content" class="change-form container">
+            <div class="col-sm-6 change-form-inner">
+                {% if errors %}<p class="alert alert-danger">{{ errors }}</p>{% endif %}
+                <form class="admin-form" method="post">{% csrf_token %}
+                    <input type="hidden" name="label_field" value="{{ label_field }}" />
+                    <input type="hidden" name="slug_field" value="{{ slug_field }}" />
+                    {% include 'doing/snippets/model_admin_form.html' %}
+                    <div class="row">
+                    {% for media_obj in media_field_list %}
+                        <div class="col-sm-7">
+                            <div>
+                            {% with media=media_obj %}
+                                {% include 'core/snippets/media_uploader_single.html' %}
+                            {% endwith %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6 save">
+                        <button class="btn btn-sm btn-primary btn-block">{% trans "Save" %}</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script>
+        (() => {
+            let screenHeight = $(document).height();
+            let screenWidth = $(document).width();
+            $('body').height(screenHeight).width(screenWidth);
+            $(window).resize(() => {
+                $('body').height(screenHeight).width(screenWidth);
+            });
+        })()
+    </script>
+{% endblock %}
+

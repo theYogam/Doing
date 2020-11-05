@@ -1,0 +1,217 @@
+{% extends 'website/base.html' %}
+{% load static humanize auth_tokens webdesign i18n user_agents staticfiles %}
+
+{% block meta %}
+{#    {{ block.super }}#}
+    {% include 'doing/snippets/colors_and_icons.html' %}
+    <meta property="og:url" content="http://doing.tchopetyamo.com" />
+    <meta property="og:image" content="{% static 'doing/img/logo.png' %}" />
+    <meta property="og:title" content="{% trans "Business Challenge - TCHOPETYAMO " %}"/>
+    <meta property="og:description" content="{% trans "Everything is possible to who ever dreams, dares, works and never gives up!!!" %}">
+    <meta property="description" content="{% trans "Everything is possible to who dreams, dares, works and never gives up!!!" %}" />
+{% endblock %}
+
+{% block page_title %}<title>{% trans "Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
+
+{% block header_brand %}
+    <a class="navbar-brand hidden-xs" href="{{ service.url }}">
+        <img src="{% static "doing/img/logo.png" %}" alt="ikwen-logo" style="height: 40px; ">
+    </a>
+    <strong class="navbar-brand visible-xs">{{ service.project_name }}</strong>
+{% endblock %}
+
+{% block head_style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{% static 'ikwen/swiper/css/swiper.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Sura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.10.29-20.22">
+    <!-- Demo styles -->
+    <style>
+        html, body {
+          position: relative;
+          height: 100%;
+        }
+        body {
+          {#background: #eee;#}
+          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          {#color:#000;#}
+          margin: 0;
+          padding: 0;
+        }
+        .swiper-container {
+          width: 100%;
+          height: 100%;
+        }
+        .swiper-slide {
+          text-align: center;
+          font-size: 18px;
+
+          /* Center slide text vertically */
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+        }
+  </style>
+{% endblock %}
+
+{% block content %}
+    <div class="banner" id="banner">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/machinerie.jpg' %});">
+                    <h1 class="text-has-shade">{% trans 'Machinery' %}</h1>
+                    <div class=" text-center anchor">
+                        <a class="js-scrollTo" href="#about">
+                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>
+                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/agro-industrie.jpeg' %});">
+                    <h1 class="text-has-shade">{% trans 'Agro-industry' %}</h1>
+                    <div class=" text-center anchor">
+                        <a class="js-scrollTo" href="#about">
+                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>
+                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/artwork.jpg' %});">
+                    <h1 class="text-has-shade">{% trans 'Art & Culture' %}</h1>
+                    <div class=" text-center anchor">
+                        <a class="js-scrollTo" href="#about">
+                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>
+                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>
+                        </a>
+                    </div>
+                </div>
+{#                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/entrepreunariat.jpg' %});">#}
+{#                    <h1 class="text-has-shade">{% trans 'Entrepreneurship' %}</h1>#}
+{#                    <div class=" text-center anchor">#}
+{#                        <a class="js-scrollTo" href="#about">#}
+{#                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>#}
+{#                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/ict1.jpg' %});">
+                    <h1 class="text-has-shade">{% trans 'ICT' %}</h1>
+                    <div class=" text-center anchor">
+                        <a class="js-scrollTo" href="#about">
+                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>
+                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-image swiper-slide" style="background-image: url({% static 'doing/img/restauration.jpg' %});">
+                    <h1 class="text-has-shade">{% trans 'Catering' %}</h1>
+                    <div class=" text-center anchor">
+                        <a class="js-scrollTo" href="#about">
+                            <i class="fas fa-chevron-down chevron-first animated bounceAlpha"></i>
+                            <i class="fas fa-chevron-down chevron-second animated bounceAlpha-second"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+    <div id="about" class="container-fluid">
+        <div class="col-sm-6">
+            <div class="container-fluid">
+                <h1>{% trans 'About Doing' %}</h1>
+                <p>
+                    {% blocktrans %}
+                        In Cameroon 80% of the companies created disappear after 2 years (Ecam, 2015),
+                        cause of Poor supervision of young entrepreneurs, lack of financing, lack of assistance during
+                        the setting up and implementation of the project, etc...<br>
+                        <strong>DOING</strong> is the solution to youth entrepreneurship in Cameroon,
+                        it is a competition that brings together young people from the national territory with project
+                        ideas in various fields (catering, art and culture, machinery, agro-industry and ICT).
+                        It takes place in 04 main stages, candidatures, preselections, eliminatories and the final
+                        with as price the financing, the realization and the piloting of the winning projects.
+                    {% endblocktrans %}
+                    <div class="clearfix"></div>
+                </p>
+                <div>
+                    <a href="{% url 'doing:download_guide' %}" class="btn btn-sm subscribe col-sm-5 col-xs-12 has-shade">{% trans 'Register' %}</a>
+                    <a href="{% url 'doing:submit_vote' %}" class="btn btn-sm vote col-sm-offset-2 col-sm-5 col-xs-12 has-shade"> {% trans 'Vote' %}</a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-6 image"></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+
+    </div>
+    <a class="js-scrollTo back-to-top hiding" href="#banner" style="text-decoration: none; color: #3F3F3F">
+        <i class="fa fa-chevron-circle-up"></i>
+    </a>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'ikwen/swiper/js/swiper.min.js' %}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            direction: 'horizontal',
+            init: true,
+            loop: true,
+            speed: 800,
+            spaceBetween: 400,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            {#mousewheel: true,#}
+            {#keyboard: true,#}
+            autoplay: {
+                delay: 5000,
+            },
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% load static i18n humanize %}
+{% with member=request.user %}
+<section>
+    <h3>{% trans 'Identification' %}</h3>
+    <div class="form-group">
+        <label for="id_first-name">{% trans "First name :" %}</label>
+        <input id="id_first-name" type="text" class="form-control" name="first_name" {% if user.first_name %}disabled="true" value="{{ user.first_name }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_last-name">{% trans "Last name :" %}</label>
+        <input id="id_last-name" type="text" class="form-control" name="last_name" {% if user.last_name %}disabled="true" value="{{ user.last_name }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_gender">{% trans "Gender :" %}</label>
+        <input id="id_gender" type="text" class="form-control" name="gender" {% if user.gender %}disabled="true" value="{{ user.gender }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_gender">{% trans "Date of birth :" %}</label>
+        <input id="id_gender" type="date" class="form-control" name="birthday" {% if user.birthday %}disabled="true" value="{{ user.birthday }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_birth-town">{% trans "Town of birth :" %}</label>
+        <input id="id_birth-town" type="text" class="form-control" name="birth_town">
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+<section>
+    <h3>{% trans 'Contact' %}</h3>
+    <div class="form-group">
+        <label for="id_phone">{% trans "Phone :" %}</label>
+        <input id="id_phone" type="text" class="form-control" name="phone" {% if user.phone %}disabled="true" value="{{ request.user.phone }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_email">{% trans "Email :" %}</label>
+        <input id="id_last-name" type="email" class="form-control" name="email" {% if user.email %} disabled="true" value="{{ request.user.email }}"{% endif %}>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_residence">{% trans "Residence:" %}</label>
+        <input id="id_residence" type="text" class="form-control" name="residence">
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+
+<section>
+    <h3>{% trans 'Education' %}</h3>
+    <div class="form-group">
+        <label for="id_school">{% trans "School :" %}</label>
+        <input id="id_school" type="text" class="form-control" name="school">
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_study-field">{% trans "Field of study :" %}</label>
+        <input id="id_study-field" type="text" class="form-control" name="study_field">
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_occupation">{% trans "Occupation :" %}</label>
+        <input id="id_occupation" type="text" class="form-control" name="occupation">
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+
+<section id="project-description" style="padding-bottom: 5vh">
+    <h3>{% trans 'Describe your project' %}</h3>
+    <div class="form-group">
+        <label for="id_category">{% trans 'Category :' %}</label>
+        <select id="id_category" class="form-control" name="category">
+            {% for category in category_list %}
+                <option value="{{ category.id }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_name">{% trans "Name :" %}</label>
+        <input id="id_name" type="text" class="form-control" name="name">
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="id_description">{% trans "Description :" %}</label>
+        <textarea id="id_description" class="form-control" name="description" style="height: 200px" placeholder="{% trans 'Describe your project in 100 words' %}"></textarea>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+        <label for="team-mates">{% trans "Add team-mates :" %}</label>
+        <input id="mate" type="text" class="form-control">
+        <input id="team-mates" type="hidden" name="team_mates_ids" class="form-control">
+        <div class="results team-mates has-shade" style="display: none" data-min-search-chars="2">
+            {% include 'core/snippets/spinner.html' %}
+            <ul style="padding-left: 0">
+                <li class="member tpl" style="display: none">
+                    <div style="display: block">
+                        <span class="photo logo bg-img" style="background-image: url({% static 'ikwen/img/no_photo.png' %})"></span>
+                        <div style="float: left; margin-left: 30px">
+                            <span class="full_name"></span>
+                            <p class="about short_description"></p>
+                        </div>
+                        <a class="trash tpl" style="float: right;">
+                            <i class="glyphicon glyphicon-trash" title="{% trans "Delete item" %}" style="margin-right: 10px;"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <ul id="team" style="list-style: none; padding: 20px 0">
+        <div class="clearfix"></div>
+    </ul>
+    <div class="clearfix"></div>
+</section><div class="clearfix"></div>
+{% endwith %}
+
+
+{% block js %}
+    <script src="{% static 'ikwen/js/ikwen-util.js' %}?v=20.10.30"></script>
+    <script>
+        $('#project-description').on('click', '.continue', function() {
+            $(this).hide();
+            $('.subscription-details').show();
+        });
+        $('#mate').keyup(function() {
+            var val = $(this).val();
+            if (val.isValidEmail()) {
+                let $teamMates = $('#team-mates');
+                $teamMates.val($teamMates.val() + ',' + val);
+                $('#project-description .continue').prop('disabled', false);
+            } else {
+                $('#project-description .continue').prop('disabled', true);
+            }
+        });
+        {% url 'ikwen:member_list' as list_members_url %}
+        var searchDescriptor = [{
+            endpoint: '{{ list_members_url }}',
+            resultTplSelector: '.results.team-mates li.member',
+            maxChars: function() {
+                // The max number of characters that will be taken into consideration
+                // in the string typed by user to do the search. Characters above that
+                // limit will be ignored.
+                return Math.max($('#mate').val().length, 4);
+            }
+        }];
+        $('#mate').focusout(function() {$('.results.team-mates').fadeOut()});
+
+        ikwen.setupSearch('#mate', '.results.team-mates', searchDescriptor);
+
+        $('.results.team-mates *').on('click', () => {
+            let $teamMates = $('#team-mates'), teamMates = $teamMates.val().split(','),
+                $mate = $('.results.team-mates .member:not(.tpl)'),
+                mateId = $mate.data('id'), i=0;
+            while (i < teamMates.length){
+                if (mateId === teamMates[i]) break;
+                i++;
+            }
+            if (i === teamMates.length){
+                if ($teamMates.val() === '')
+                    $teamMates.val(mateId);
+                else
+                    $teamMates.val($teamMates.val() + ',' + mateId);
+                $mate.clone().show().appendTo('#team').find('.trash').show().removeClass('tpl');
+            }
+        });
+        $('#team').on('click', '.trash', (e) => {
+           let $teamMates = $('#team-mates'), teamMates = $teamMates.val().split(','),
+               i = 0, $mate = $(e.target).parents('.member:not(.tpl)'), mateId = $mate.prop('id');
+           while (i < teamMates.length){
+               if (mateId === teamMates[i]){
+                   $teamMates.val($teamMates.val().replace(',' + mateId , ''));
+                   break;
+               }
+               i++;
+           }
+           $mate.remove();
+        });
+    </script>
+{% endblock %}

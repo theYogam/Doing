@@ -1,0 +1,149 @@
+{% extends 'doing/submit_project.html' %}
+{% load static humanize i18n webdesign %}
+
+{% block page_title %}<title>{% trans "Vote - Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
+
+{% block content %}
+    <div class="vote">
+        <div class="banner">
+            <div class="banner-inner">
+                <h1 class="text-center text-has-shade">{% trans 'Vote' %}</h1>
+            </div>
+        </div>
+        <div id="admin-content" class="change-form container">
+            <div class="col-sm-10">
+                {% for category in category_list %}
+                    {% if category.project_set.all|length > 0 %}
+                        <h1 class="text-center category-title">{{ category }}</h1>
+                        <div>
+                            {% for project in category.project_set.all %}
+                                <div class="col-sm-4 project-details" id="{{ project.id }}" data-name="{{ project.name }}">
+                                    <h3 class="text-center">{{ project.name }}</h3>
+                                    <p class="text-justify">
+                                        {{ project.description }}
+                                    </p>
+                                    <div class="team-mates">
+                                        <h4>{% trans 'Team-mates' %}</h4>
+                                        {% for mate in project.team_mate_list %}
+                                            <span>{{ mate.full_name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="reactions">
+                                        <div>
+                                            <span class="col-xs-4"><i class="far fa-thumbs-up {% for vote in project.vote_set.all %}{% if user == vote.voter %}voted{% endif %}{% endfor %}" title="Vote"></i></span>
+                                            <span class="col-xs-4"><i class="fa fa-share-alt" title="Share"></i></span>
+                                            <span class="col-xs-4"><i class="fa fa-comment {% for reaction in project.reaction_set.all %}{% if user == reaction.member %}commented{% endif %}{% endfor %}" title="Comment"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="share-project">
+                                            {% url 'doing:submit_vote' as current_url %}
+                                            <div class="tpl share-links has-shade">
+                                                <div class="social-icon hidden-xs">
+                                                    <div class="fb-share-button col-sm-4" data-href="{{ service.url }}{{ current_url }}#{{ project.id }}" data-layout="button" data-mobile-iframe="true">
+                                                        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php"><i class="fab fa-facebook"></i></a>
+                                                    </div>
+                                                    <a class="twitter-share-button col-sm-4" href="https://twitter.com/intent/tweet?url={{ service.url }}{{ current_url }}#{{ project.id }}" data-size="small"><i class="fab fa-twitter"></i></a>
+                                                    <a class="icon-linkedin share-link col-sm-4" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ service.url }}{{ current_url }}#{{ project.id }}" title="Share on LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                                                </div>
+                                                <div class="row visible-xs">
+                                                    <div class="col-sm-offset-2 col-sm-4 col-xs-4" data-href="{{ service.url }}{{ current_url }}#{{ project.id }}" data-layout="button" data-mobile-iframe="true">
+                                                        <a class="product-social-share btn btn-block" target="_blank"  href="https://www.facebook.com/sharer/sharer.php?u={{ service.url }}{{ current_url }}#{{ project.id }}"  style="background: #3b5998;">
+                                                            <i class="fab fa-facebook-f"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-4 col-xs-4">
+                                                        <a class="product-social-share btn btn-block" data-toggle="modal" data-target="#twitter-share" href="https://twitter.com/intent/tweet?url={{ service.url }}{{ current_url }}#{{ project.id }}" style="background: #1da1f2;">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <button class="product-social-share whatsapp-share btn btn-block" data-toggle="modal" data-target="#whatsapp-share" style="background: #25d366;">
+                                                            <i class="fab fa-whatsapp"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-project tpl">
+                                            <textarea id="comment" class="input-sm form-control has-shade" style="height: 100px" placeholder="{% trans 'Live a comment here' %}"></textarea>
+                                            <button class="btn-primary btn-sm col-xs-12">
+                                                {% trans 'ok' %}
+                                                {% include 'core/snippets/spinner.html' %}
+                                            </button>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="scores text-muted">
+                                        {{ project.vote_set.all|length }} <span>{% trans 'votes' %}</span><i class="fa fa-circle"></i>{{ project.reaction_set.all|length }} <span>{% trans 'comments' %}</span></span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script>
+        (() => {
+            $('body').on('click', (e) => {
+                if (!$(e.target).hasClass('fa-share-alt') && ! $(e.target).hasClass('fa-comment')
+                    && $(e.target).parents('.comment-project').length <= 0
+                    && $(e.target).parents('.share-project').length <= 0){
+                    $('.share-links').hide();
+                    $('.comment-project').hide();
+                }
+            });
+            $('.fa-share-alt').on('click', (e) => {
+                $('.share-links').show();
+                $('.comment-project').hide();
+            });
+            $('.fa-comment:not(.commented)').on('click', (e) => {
+                $('.comment-project').show();
+                $('.share-links').hide();
+            });
+            $('.comment-project:not(.commented) button').on('click', (e) => {
+                let project_id = $(e.target).parents('.project-details').attr('id'),
+                    project_name = $(e.target).parents('.project-details').data('name');
+                $(e.target).find('.spinner').show();
+                $.getJSON('', {'comment': $('.comment-project #comment').val(), 'project_id': project_id}, (data) => {
+                    if (data.success) {
+                        $('.fa-comment').addClass('commented');
+                        ikwen.showFloatingNotice("{% trans 'You successfully commented project ' %}" + project_name);
+                        $('.comment-project').hide();
+                    }
+                    if (data.error){
+                        $(e.target).addClass('commented');
+                        ikwen.showFloatingNotice("{% trans 'You have already commented project ' %}" + project_name);
+                        $('.comment-project').hide();
+                    }
+                });
+            });
+            $('.fa-thumbs-up:not(.voted)').on('click', (e) => {
+                let project_id = $(e.target).parents('.project-details').attr('id'),
+                    project_name = $(e.target).parents('.project-details').data('name');
+                $.getJSON('', {'project_id': project_id, 'is_vote': true}, (data) => {
+                    if (data.success) {
+                        $(e.target).addClass('voted');
+                        ikwen.showFloatingNotice("{% trans 'You successfully voted for project ' %}" + project_name);
+                    }
+                    if (data.error){
+                        $(e.target).addClass('voted');
+                        ikwen.showFloatingNotice("{% trans 'You have already voted for ' %}" + project_name);
+                    }
+                });
+            });
+        })()
+    </script>
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% extends 'doing/welcome.html' %}
+{% load static humanize auth_tokens webdesign i18n user_agents staticfiles %}
+
+{% block page_title %}<title>{% trans "Partnership - TCHOPETYAMO" %}</title>{% endblock %}
+
+{% block header_brand %}
+    <a class="navbar-brand hidden-xs" href="{{ service.url }}">
+        <img src="{% static "doing/img/doing-white-01.png" %}" alt="ikwen-logo" style="height: 40px; ">
+    </a>
+    <strong class="navbar-brand visible-xs">{{ service.project_name }}</strong>
+{% endblock %}
+
+{% block head_style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.20.11.05">
+    <style>
+        body {background-image: url({% static 'doing/img/partnership.jpg' %}); background-repeat: no-repeat; background-size: cover;}
+
+        #navbar li a:not(:hover) {color: #fff!important;}
+        #navbar li a:hover {color: #ffe004!important;}
+
+        @media (max-width: 767px) {
+            footer {background: transparent; margin-top: 60px; padding: 5vh 0}
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="banner partnership text-center">
+        <div class="container">
+            <h1 class="text-has-shade">{% blocktrans %} CONTACT US TO SUPPORT OTHER WHO DARE{% endblocktrans %}</h1>
+            <div class="contact">
+                <a class="col-sm-6" style="text-decoration: none;" href="tel://{{ config.contact_phone }}"><i class="fas fa-phone">&nbsp;&nbsp;</i>{{ config.contact_phone }}</a>
+                <a class="col-sm-6" href="mailto:{{ config.contact_email }}" class="pull-right"><i class="fas fa-envelope">&nbsp;&nbsp;</i>{% trans "Send email" %}</a>
+                <div class="clearfix"></div>
+            </div>
+            <a href="{% get_static_prefix %}doing/document/GUIDE DE L'ENTREPRENEUR.doc" class="btn btn-sm btn-download">{% trans 'Download' %}</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script>
+        (() => {
+           $('.btn-download').on('click', (e) => {
+               setTimeout(() => {
+                   $(e.target).remove()
+               }, 3000);
+
+           });
+        })()
+    </script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'website/base.html' %}
+{% load static humanize auth_tokens webdesign i18n user_agents staticfiles %}
+
+{% block meta %}
+    {{ block.super }}
+    {% include 'doing/snippets/colors_and_icons.html' %}
+    <meta property="og:url" content="http://doing.tchopetyamo.com" />
+    <meta property="og:image" content="{% static 'doing/img/logo.png' %}" />
+    <meta property="og:title" content="{% trans "Business Challenge - TCHOPETYAMO " %}"/>
+    <meta property="og:description" content="{% trans "Everything is possible to who ever dreams, dares, works and never gives up!!!" %}">
+    <meta property="description" content="{% trans "Everything is possible to who ever dreams, dares, works and never gives up!!!" %}" />
+{% endblock %}
+
+{% block page_title %}<title>{% trans "Welcome to Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
+
+{% block header_brand %}
+    <a class="navbar-brand hidden-xs" href="{{ service.url }}">
+        <img src="{% static "doing/img/logo.png" %}" alt="ikwen-logo" style="height: 40px; ">
+    </a>
+    <strong class="navbar-brand visible-xs">{{ service.project_name }}</strong>
+{% endblock %}
+
+{% block head_style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.20.11.05">
+    <style>
+        body {background-image: url({% static 'doing/img/first_page.jpg' %}); background-repeat: no-repeat; background-size: cover;}
+        .navbar {background: transparent!important;}
+        #navbar li a:hover {color: #ffe004!important;}
+
+        footer {color: #fff; margin-top: 25vh}
+        footer strong {color: #ffe004}
+
+        @media (max-width: 767px) {
+            footer {background: transparent; margin-top: 5vh; padding: 5vh 0}
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="banner first-page text-center">
+        <div class="container">
+            <h1 class="text-has-shade">{% blocktrans %} EVERYTHING IS POSSIBLE TO WHO EVER <br>DREAMS, DARES, WORKS AND NEVER GIVES UP{% endblocktrans %}</h1>
+            <a href="{% url 'ikwen:sign_in' %}?next={% url 'home' %}" class="btn btn-sm login">{% trans 'Login' %}</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script>
+        (() => {
+            let screenHeight = $(window).height();
+            let screenWidth = $(window).width();
+            $(window).resize(() => {
+                $('body').height(screenHeight).width(screenWidth);
+                $('footer').insertAfter('.banner .container');
+            });
+            $('body').height(screenHeight).width(screenWidth);
+            $('footer').insertAfter('.banner .container');
+        })()
+    </script>
+{% endblock %}

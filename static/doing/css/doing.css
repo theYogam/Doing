@@ -1,0 +1,114 @@
+.navbar {background: transparent}
+.navbar  {background: transparent}
+#navbar-search, .show-search {display: none !important}
+#navbar li a:not(:hover) {color: #312782!important;}
+#navbar ul.dropdown-menu li a:hover {color: #fff!important;}
+#navbar li a:hover {color: #a40009!important;}
+
+.btn {border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
+.btn:hover {background-color: #a40009;border-color: #a40009;color: #fff;/* box-shadow: 2px 2px 3px 3px rgba(80, 80, 80, 0.76); */transition: background .3s 8ms;}
+/*{#.subscribe, .vote {width: 100px}#}*/
+
+.banner.first-page {background: rgba(0,0,0,.4); padding-top: 30vh; height: inherit; display: block}
+.banner.first-page h1{color: #fff; line-height: 70px}
+.banner.first-page .login{border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; width: 280px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
+.banner.first-page .login:hover{background-color: #a40009; border-color: #a40009; color: #fff}
+
+.banner {background-repeat: no-repeat; background-size: cover; height: inherit}
+.banner .item-image {background-repeat: no-repeat; background-size: cover;}
+.banner .item-image h1 {font-weight: 900; font-size: 100px}
+.banner .item-image .anchor {margin-bottom: 5vh }
+.banner .item-image .anchor a {text-decoration: none; display: flex; flex-flow: column; color: #fff }
+/*{#footer {color: #fff; margin-top: 25vh}#}*/
+.banner h1 {color: #fff; line-height: 70px}
+
+.banner.partnership .contact {font-size: 20px}
+.banner.partnership .btn-download {border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; width: 280px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
+.banner.partnership .btn-download:hover {background-color: #a40009; border-color: #a40009; color: #fff}
+
+
+footer {background: #fff; margin: 0; padding: 20vh 0 5vh;}
+
+
+
+.submit-project .save {clear: both; margin: auto; float: none}
+.submit-project .save button:not(:hover) {background: #312782; color: #fff}
+.submit-project .banner, .vote .banner {background-image: url(../img/submit-project.jpg);  background-repeat: no-repeat; background-size: cover; background-position: center; height: 500px;}
+.submit-project .banner .banner-inner, .vote .banner .banner-inner {background: rgba(0, 0, 0, .6); height: inherit}
+.submit-project .banner .banner-inner h1, .vote .banner .banner-inner h1 {color: #fff; padding-top: 25vh; font-size: 7em; font-weight: 800; margin-top: 0}
+.submit-project #admin-content .change-form-inner {float: none; margin: auto}
+.submit-project #admin-content .admin-form section h3 {margin: 50px 0; font-weight: 800}
+.submit-project #admin-content .admin-form section .form-group {padding-right: 0;}
+
+
+#about {padding-top: 20vh;  height: inherit}
+#about h1 {color: #a40009; font-size: 62px; font-weight: 900}
+#about p {font-size: 20px}
+#about .image {background-image: url(../img/business-woman.jpeg);background-size: cover;background-position: center;height: 500px;margin-top: 60px;}
+.swiper-button-prev, .swiper-button-next {background: none!important;color: #fff;}
+
+.download {margin: auto; float: none; min-width: 300px; max-width: 600px; padding: 16vh 0}
+.download img {margin: auto}
+.download h4 {line-height: 40px}
+.download > div {margin-top: 50px}
+.download > div > a {margin: auto; float: none}
+
+.vote .banner, .vote .banner {background-image: url(../img/vote-banner.jpg)}
+.vote #admin-content .category-title {color: #312782; font-weight: 900}
+.vote #admin-content .project-details .team-mates {margin-top: 20px}
+.vote #admin-content .project-details .team-mates h4 {color: #a40009;}
+.vote #admin-content .reactions .comment-project {position: absolute;z-index: 4;background: #ffff; width: 100%}
+.vote #admin-content .reactions .comment-project button {margin-top: 20px}
+.vote #admin-content .reactions {margin: 30px auto;}
+.vote #admin-content .reactions .share-project {margin-top: 10px;}
+.vote #admin-content .reactions .share-links {position: absolute;border-radius: 18px;padding: 10px;z-index: 4;width: inherit;background: #ffff;}
+.vote #admin-content .reactions i.voted, .vote #admin-content .reactions i.commented {color: #a40009;}
+.vote #admin-content .reactions i.fa, .vote #admin-content .reactions i.far {font-size: 30px;}
+.vote #admin-content .reactions i.fa:hover, .vote #admin-content .reactions i.far:hover {color: #312782; cursor: pointer;}
+.vote #admin-content .scores {margin-top: 30px;}
+.vote #admin-content .scores i {font-size: 4px;margin: 12px 15px;top: -2px;position: relative;}
+
+.fb-share-button i {color: #3b5998;}
+.fb-share-button i:hover {color: #263a63;}
+.icon-linkedin {color: #0C77B5;}
+.icon-linkedin:hover {color: #095784;}
+.twitter-share-button i {color: #1da1f2}
+.twitter-share-button i:hover {color: #1170ac}
+.social-icon {display: -webkit-inline-box;}
+
+@media (max-width: 767px){
+    .single-right h4 {font-size: 1.8em;margin-top: 10px;margin-bottom: 5px}
+    #bottom-tabs li {text-align: center;width: 50%;}
+    .bottom-cntr > form {float: left;margin-left: 40px;}
+    .bottom-cntr i {color: #FFF; font-size: 15px}
+    #cd-search1 .cd-search input {padding: .1em .5em;}
+    .header-xs h3.app-name a {width: 300%; float: left}
+    .social-icon {margin-top: 1.8em; padding-left: 15px;}
+    .social-icon a i {font-size: 35px}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .single-right h4 {margin-bottom: .2em}
+    .social-icon {margin-top: 1.8em; padding-left: 15px;}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .single-right h4 {margin-bottom: .2em}
+    .social-icon {float: left;margin-top: 0;padding-left: 0;margin-bottom: 0;padding-top: 0;}
+}
+
+
+@media (max-width: 767px) {
+    .product-social-share {margin-top: 0; color: #fff}
+
+    .banner.first-page {padding-top: 10vh}
+    .banner.first-page h1 {padding-top: 0; font-size: 2.3em; line-height: 66px}
+    .banner.first-page .login {margin-top: 3vh}
+
+    .banner.partnership {padding-top: 10vh}
+    .banner.partnership h1 {padding-top: 0; font-size: 2em; line-height: 66px}
+
+    .vote .banner, .submit-project .banner {height: 300px!important;}
+    .vote .banner h1, .submit-project .banner h1 {font-size: 3em!important; padding-top: 15vh!important;}
+}

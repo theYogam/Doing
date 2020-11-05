@@ -1,0 +1,47 @@
+{% load i18n humanize staticfiles cache auth_tokens %}
+<div class="edge-panel-left-container visible-xs">
+    <div id="side-nav" class="edge-panel-left subtle-shade" style="margin-left: -300px">
+        <div class="wrapper">
+            <div class="stage">
+                <div class="top-edge-panel" style>
+                    <div class="panel-top">
+                    <img src="{% static 'doing/img/logo.png' %}" class="img-responsive text-center" style="margin:auto; width: 60%">
+                </div>
+                <div class="divider"></div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                        <li><a href="{% url 'doing:submit_project' %}">{% trans "Inscription" %}</a></li>
+                        <li><a href="{% url 'doing:submit_vote' %}">{% trans "Vote" %}</a></li>
+                        <li><a href="{% url 'doing:submit_vote' %}">{% trans "Infos" %}</a></li>
+                        <li><a href="{% url 'doing:partnership' %}">{% trans "Partnership" %}</a></li>
+                        <div class="divider"></div>
+                        <li><a href="http://blog.ikwen.com">{% trans 'Blog' %}</a> </li>
+                        <li><a href="http://support.ikwen.com">{% trans 'Support' %}</a> </li>
+{#                        <li><a href="{% url 'about' %}">{% trans 'About' %}</a> </li>#}
+{#                        <li><a href="{% url 'terms_and_conditions' %}">{% trans 'Terms & conditions' %}</a> </li>#}
+                        {% if agreement_page %}
+{#                            <li><a href="{% url 'flatpage' agreement_page.url %}">{{ agreement_page.title }}</a></li>#}
+                        {% endif %}
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <div class="social-icon">
+                        <a style="padding-right: 10px; text-decoration: none; transition: 0.2s;" href="https://www.linkedin.com/company/18357139/"target="_blank" class="ico ico-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a style="padding-right: 10px; text-decoration: none; transition: 0.2s;" href="https://twitter.com/ikwenSARL"target="_blank" class="ico ico-twitter"><i class="fab fa-twitter"></i></a>
+                        <a style="padding-right: 10px; text-decoration: none; transition: 0.2s;" href="https://www.facebook.com/Ikwen.SARL" target="_blank" class="ico ico-facebook"><i class="fab fa-facebook"></i></a>
+                        <a style="padding-right: 10px; text-decoration: none; transition: 0.2s;" href="https://www.youtube.com/channel/UCzhHrosFOA6RC2H9MqR9jxA"target="_blank" class="ico ico-youtube"><i class="fab fa-youtube"></i></a>
+                        {% include 'core/snippets/language_switcher.html' %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer" class="text-muted">
+                &copy; {{ year }} <a class="company-name" href="{{ service.url }}"><strong>{{ config.company_name }}</strong></a>.
+                {% trans "All rights reserved." %}
+                {% if config.legal_mentions_url %}
+                - <a href="{{ config.legal_mentions_url }}" style="color: #666; text-decoration: none">{% trans "Legal mentions" %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

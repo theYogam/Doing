@@ -1,0 +1,23 @@
+.profile {
+    display: block;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-decoration: none!important;
+    }
+.profile.aspect {/* margin: auto; */float: left;color: #fff;font-size: 23px;text-align: center;line-height: 64px;font-family: 'Montserrat', sans-serif;}
+.profile.aspect-ict {background-color: #319dd5;}
+.profile.aspect-ai {background-color: #7CB342;}
+.profile.aspect-ac {background-color: #d57a1f;}
+.profile.aspect-m {background-color: #312782;}
+
+.team-mates {
+    margin-left: 50px;
+    float: left;
+}
+.team-mates h5 {
+    margin: 0;
+}

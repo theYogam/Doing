@@ -1,0 +1,22 @@
+{% extends "core/base_admin.html" %}
+{% load i18n cache auth_tokens %}
+
+{% block app_admin_nav %}
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="projects">
+            <a href="{% url 'doing:project_list' %}">{% trans "Projects" %}</a>
+        </li>
+        <li role="presentation" class="categories">
+            <a href="{% url 'doing:category_list' %}">{% trans "Categories" %}</a>
+        </li>
+        <li role="presentation" class="competitors">
+            <a href="{% url 'doing:competitor_list' %}">{% trans "Competitors" %}</a>
+        </li>
+        <li role="presentation" class="votes">
+            <a href="{% url 'doing:vote_list' %}">{% trans "Votes" %}</a>
+        </li>
+        <li role="presentation" class="reactions">
+            <a href="{% url 'doing:reaction_list' %}">{% trans "Reactions" %}</a>
+        </li>
+    </ul>
+{% endblock %}
