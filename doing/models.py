@@ -31,7 +31,7 @@ class Competitor(Model):
 class Project(Model):
     name = models.CharField(max_length=150)
     promoter = models.ForeignKey(Competitor, null=True, blank=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, null=True)
     team_mate_list = ListField(EmbeddedModelField('accesscontrol.Member'), null=True, blank=True)
     description = models.TextField(_('Describe your project'), max_length=100)
     attachment = FileField(_('Attachment'), allowed_extensions=['doc', 'docx', 'pdf', 'ppt', 'odt'], upload_to='Projects')

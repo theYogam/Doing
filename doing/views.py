@@ -131,6 +131,10 @@ class SubmitProject(ChangeObjectBase):
 
         competitor.save()
         obj.promoter = competitor
+        category_id = request.POST.get('category')
+        if category_id:
+            category = Category.objects.get(pk=category_id)
+            obj.category = category
         team_mates = request.POST.get('team_mates_ids')
         if team_mates:
             obj.team_mate_list = [Member.objects.get(pk=mate) for mate in team_mates.split(',')]
