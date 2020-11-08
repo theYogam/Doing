@@ -70,8 +70,8 @@
                                             <textarea id="comment" class="input-sm form-control has-shade" style="height: 100px" placeholder="{% trans 'Live a comment here' %}"></textarea>
                                             <button class="btn-primary btn-sm col-xs-12">
                                                 {% trans 'ok' %}
-                                                {% include 'core/snippets/spinner.html' %}
                                             </button>
+                                            {% include 'core/snippets/spinner.html' %}
 
                                             <div class="clearfix"></div>
                                         </div>
@@ -105,18 +105,21 @@
                 }
             });
             $('.fa-share-alt').on('click', (e) => {
-                $('.share-links').show();
-                $('.comment-project').hide();
+                let $parent = $(e.target).parents('.project-details');
+                $parent.find('.share-links').show();
+                $parent.find('.comment-project').hide();
             });
             $('.fa-comment:not(.commented)').on('click', (e) => {
-                $('.comment-project').show();
-                $('.share-links').hide();
+                let $parent = $(e.target).parents('.project-details');
+                $parent.find('.comment-project').show();
+                $parent.find('.share-links').hide();
             });
             $('.comment-project:not(.commented) button').on('click', (e) => {
-                let project_id = $(e.target).parents('.project-details').attr('id'),
-                    project_name = $(e.target).parents('.project-details').data('name');
-                $(e.target).find('.spinner').show();
-                $.getJSON('', {'comment': $('.comment-project #comment').val(), 'project_id': project_id}, (data) => {
+                let $project = $(e.target).parents('.project-details'),
+                    project_id = $project.attr('id'),
+                    project_name = $project.data('name');
+                $project.find('.spinner').show();
+                $.getJSON('', {'comment': $project.find('#comment').val(), 'project_id': project_id}, (data) => {
                     if (data.success) {
                         $('.fa-comment').addClass('commented');
                         ikwen.showFloatingNotice("{% trans 'You successfully commented project ' %}" + project_name);
@@ -127,6 +130,7 @@
                         ikwen.showFloatingNotice("{% trans 'You have already commented project ' %}" + project_name);
                         $('.comment-project').hide();
                     }
+                    $(e.target).find('.spinner').hide();
                 });
             });
             $('.fa-thumbs-up:not(.voted)').on('click', (e) => {

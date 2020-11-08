@@ -20,14 +20,12 @@
 .banner .item-image h1 {font-weight: 900; font-size: 100px}
 .banner .item-image .anchor {margin-bottom: 5vh }
 .banner .item-image .anchor a {text-decoration: none; display: flex; flex-flow: column; color: #fff }
-/*{#footer {color: #fff; margin-top: 25vh}#}*/
+/*footer {color: #fff; margin-top: 25vh}*/
 
+.banner.partnership {padding-top: 30vh}
 .banner.partnership .contact {font-size: 20px}
 .banner.partnership .btn-download {border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; width: 280px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
 .banner.partnership .btn-download:hover {background-color: #a40009; border-color: #a40009; color: #fff}
-
-
-footer {background: #fff; margin: 0; padding: 20vh 0 5vh;}
 
 
 
