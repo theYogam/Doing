@@ -9,7 +9,9 @@
 .btn:hover {background-color: #a40009;border-color: #a40009;color: #fff;/* box-shadow: 2px 2px 3px 3px rgba(80, 80, 80, 0.76); */transition: background .3s 8ms;}
 /*{#.subscribe, .vote {width: 100px}#}*/
 
-.banner.first-page {background: rgba(0,0,0,.4); padding-top: 30vh; height: inherit; display: block}
+footer {position: absolute; bottom: 10px; width: 90vw}
+
+.banner.first-page {background: rgba(0,0,0,.4);padding-top: 30vh;height: 100vh;display: block;}
 .banner.first-page h1{color: #fff; line-height: 70px}
 .banner.first-page .login{border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; width: 280px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
 .banner.first-page .login:hover{background-color: #a40009; border-color: #a40009; color: #fff}
@@ -20,7 +22,7 @@
 .banner .item-image h1 {font-weight: 900; font-size: 100px}
 .banner .item-image .anchor {margin-bottom: 5vh }
 .banner .item-image .anchor a {text-decoration: none; display: flex; flex-flow: column; color: #fff }
-/*footer {color: #fff; margin-top: 25vh}*/
+
 
 .banner.partnership {padding-top: 30vh}
 .banner.partnership .contact {font-size: 20px}
@@ -45,15 +47,16 @@
 #about .image {background-image: url(../img/business-woman.jpeg);background-size: cover;background-position: center;height: 500px;margin-top: 60px;}
 .swiper-button-prev, .swiper-button-next {background: none!important;color: #fff;}
 
-.download {margin: auto; float: none; min-width: 300px; max-width: 600px; padding: 16vh 0}
-.download img {margin: auto}
-.download h4 {line-height: 40px}
-.download > div {margin-top: 50px}
-.download > div > a {margin: auto; float: none}
+.download-guide {margin: auto; float: none; min-width: 300px; max-width: 600px; padding: 16vh 0}
+.download-guide img {margin: auto}
+.download-guide h4 {line-height: 40px}
+.download-guide > div {margin-top: 50px}
+.download-guide > div > a.btn-download {margin: auto; float: none;}
 
 .vote .banner, .vote .banner {background-image: url(../img/vote-banner.jpg)}
 .vote #admin-content .category-title {color: #312782; font-weight: 900}
-.vote #admin-content .project-details .team-mates {margin-top: 20px}
+.vote #admin-content .project-details {margin: 15px 15px auto auto; border: 1px solid #dce4ec; overflow: hidden}
+.vote #admin-content .project-details .team-mates {margin-top: 20px; height: 150px; overflow: hidden}
 .vote #admin-content .project-details .team-mates h4 {color: #a40009;}
 .vote #admin-content .reactions .comment-project {position: absolute;z-index: 4;background: #ffff; width: 100%}
 .vote #admin-content .reactions .comment-project button {margin-top: 20px}
@@ -73,6 +76,9 @@
 .twitter-share-button i {color: #1da1f2}
 .twitter-share-button i:hover {color: #1170ac}
 .social-icon {display: -webkit-inline-box;}
+.edge-panel-left .social-icon {margin: 0; display: inline-block}
+.edge-panel-left .social-icon form {margin: 0; width: 10px; display: inline-block}
+
 
 @media (max-width: 767px){
     .single-right h4 {font-size: 1.8em;margin-top: 10px;margin-bottom: 5px}
@@ -106,7 +112,7 @@
     .banner.first-page .login {margin-top: 3vh}
 
     .banner.partnership {padding-top: 10vh}
-    .banner.partnership h1 {padding-top: 0; font-size: 2em; line-height: 66px}
+    .banner.partnership h1 {padding-top: 10vh; font-size: 2em; line-height: 66px}
 
     .vote .banner, .submit-project .banner {height: 300px!important;}
     .vote .banner h1, .submit-project .banner h1 {font-size: 3em!important; padding-top: 15vh!important;}

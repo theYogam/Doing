@@ -5,11 +5,14 @@
 
 {% block head_style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}">
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.11.11">
+    <style>
+        #navbar .menu-button * {background-color: #312782!important;}
+    </style>
 {% endblock %}
 
-{% block content %}
-    <div class="text-center download">
+{% block page_content %}
+    <div class="text-center download-guide">
         <img class="img-responsive " src="{% static 'doing/img/logo.png' %}" height="300" width="300">
         <h4>
             {% blocktrans %}
@@ -17,7 +20,7 @@
             {% endblocktrans %}
         </h4>
         <div>
-            <a class="btn btn-sm col-sm-6 has-shade" href="{% get_static_prefix %}doing/document/GUIDE DE CELUI QUI OSE.doc">
+            <a class="btn btn-sm col-sm-6 has-shade btn-download" href="{% get_static_prefix %}doing/document/GUIDE DE CELUI QUI OSE.doc">
                 {% trans 'Download' %}
             </a>
         </div>

@@ -6,15 +6,15 @@
 {% block head_style %}
     {{ block.super }}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.11.07">
+    <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.11.11">
     <link href="{% static 'ikwen/css/uploader-single.css' %}?v=20.8.17" media="screen" rel="stylesheet" type="text/css" />
     <style>
-        body {background: #fff}
+        html, body {background: #fff}
         #navbar:not(active) {background: transparent!important;}
         #navbar.active{background: #312782!important;}
         #navbar li a:hover {color: #ffe004!important;}
         #navbar.active #user-menu li a:not(:hover) {color: #312782!important;}
-        footer {background: #fff;margin: 0;padding: 20vh 0 5vh;}
+        footer {position: static; bottom: 10px; width: 90vw}
         
         @media (min-width: 768px ) {
             #navbar li a:not(:hover) {color: #fff!important;}
@@ -35,7 +35,7 @@
     <strong class="navbar-brand visible-xs">{{ service.project_name }}</strong>
 {% endblock %}
 
-{% block content %}
+{% block page_content %}
     <div class="submit-project">
         <div class="banner">
             <div class="banner-inner">
@@ -70,18 +70,3 @@
     </div>
     <div class="clearfix"></div>
 {% endblock %}
-
-{% block js %}
-    {{ block.super }}
-    <script>
-        (() => {
-            let screenHeight = $(document).height();
-            let screenWidth = $(document).width();
-            $('body').height(screenHeight).width(screenWidth);
-            $(window).resize(() => {
-                $('body').height(screenHeight).width(screenWidth);
-            });
-        })()
-    </script>
-{% endblock %}
-

@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{% static 'doing/css/doing.css' %}?v=20.11.07">
     <!-- Demo styles -->
     <style>
+        #navbar .menu-button * {background-color: #312782!important;}
+        footer {position: static}
         html, body {
           position: relative;
           height: 100%;
@@ -68,7 +70,7 @@
   </style>
 {% endblock %}
 
-{% block content %}
+{% block page_content %}
     <div class="banner" id="banner">
         <!-- Swiper -->
         <div class="swiper-container">

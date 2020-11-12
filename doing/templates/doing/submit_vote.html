@@ -3,7 +3,7 @@
 
 {% block page_title %}<title>{% trans "Vote - Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
 
-{% block content %}
+{% block page_content %}
     <div class="vote">
         <div class="banner">
             <div class="banner-inner">
@@ -17,9 +17,9 @@
                         <h1 class="text-center category-title">{{ category }}</h1>
                         <div>
                             {% for project in category.project_set.all %}
-                                <div class="col-sm-4 project-details" id="{{ project.id }}" data-name="{{ project.name }}">
+                                <div class="col-sm-4 project-details table-bordered" id="{{ project.id }}" data-name="{{ project.name }}">
                                     <h3 class="text-center">{{ project.name }}</h3>
-                                    <p class="text-justify">
+                                    <p class="text-justify" style="height: 100px">
                                         {{ project.description }}
                                     </p>
                                     <div class="team-mates">
@@ -85,6 +85,11 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+                {% if category_list|length == 0 %}
+                    <div class="text-muted text-center col-sm-6" style="margin: 10px auto; float: none; height: 200px">
+                         <h3>{% trans 'No project submit yet...' %}</h3>
+                    </div>
+                {% endif %}
             </div>
             <div class="clearfix"></div>
         </div>
