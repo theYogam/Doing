@@ -5,6 +5,8 @@
 #navbar ul.dropdown-menu li a:hover {color: #fff!important;}
 #navbar li a:hover {color: #a40009!important;}
 
+button:active, a:active {border: none}
+
 .btn {border-color: #fff; background-color: #fff; border-radius: 100px; height: 48px; margin-top: 60px; color: #a40009; font-size: 20px; font-weight: 600}
 .btn:hover {background-color: #a40009;border-color: #a40009;color: #fff;/* box-shadow: 2px 2px 3px 3px rgba(80, 80, 80, 0.76); */transition: background .3s 8ms;}
 /*{#.subscribe, .vote {width: 100px}#}*/
@@ -58,11 +60,12 @@ footer {position: absolute; bottom: 10px; width: 90vw}
 .vote #admin-content .project-details {margin: 15px 15px auto auto; border: 1px solid #dce4ec; overflow: hidden}
 .vote #admin-content .project-details .team-mates {margin-top: 20px; height: 150px; overflow: hidden}
 .vote #admin-content .project-details .team-mates h4 {color: #a40009;}
-.vote #admin-content .reactions .comment-project {position: absolute;z-index: 4;background: #ffff; width: 100%}
+.vote #admin-content .reactions .comment-project {position: static;z-index: 1000;background: #ffff; width: 100%;}
 .vote #admin-content .reactions .comment-project button {margin-top: 20px}
 .vote #admin-content .reactions {margin: 30px auto;}
+.vote #admin-content .reactions .share-links {width: fit-content}
 .vote #admin-content .reactions .share-project {margin-top: 10px;}
-.vote #admin-content .reactions .share-links {position: absolute;border-radius: 18px;padding: 10px;z-index: 4;width: inherit;background: #ffff;}
+.vote #admin-content .reactions .share-links {position: static;border-radius: 18px;padding: 10px;z-index: 4;background: #ffff;}
 .vote #admin-content .reactions i.voted, .vote #admin-content .reactions i.commented {color: #a40009;}
 .vote #admin-content .reactions i.fa, .vote #admin-content .reactions i.far {font-size: 30px;}
 .vote #admin-content .reactions i.fa:hover, .vote #admin-content .reactions i.far:hover {color: #312782; cursor: pointer;}
@@ -79,17 +82,6 @@ footer {position: absolute; bottom: 10px; width: 90vw}
 .edge-panel-left .social-icon {margin: 0; display: inline-block}
 .edge-panel-left .social-icon form {margin: 0; width: 10px; display: inline-block}
 
-
-@media (max-width: 767px){
-    .single-right h4 {font-size: 1.8em;margin-top: 10px;margin-bottom: 5px}
-    #bottom-tabs li {text-align: center;width: 50%;}
-    .bottom-cntr > form {float: left;margin-left: 40px;}
-    .bottom-cntr i {color: #FFF; font-size: 15px}
-    #cd-search1 .cd-search input {padding: .1em .5em;}
-    .header-xs h3.app-name a {width: 300%; float: left}
-    .social-icon {margin-top: 1.8em; padding-left: 15px;}
-    .social-icon a i {font-size: 35px}
-}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .single-right h4 {margin-bottom: .2em}
@@ -99,11 +91,20 @@ footer {position: absolute; bottom: 10px; width: 90vw}
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .single-right h4 {margin-bottom: .2em}
-    .social-icon {float: left;margin-top: 0;padding-left: 0;margin-bottom: 0;padding-top: 0;}
+    .social-icon {float: left;margin-top: 0;padding-left: 0;margin-bottom: 0;padding-top: 0;width: -webkit-fill-available}
+.vote #admin-content .reactions .share-links {width: auto}
 }
 
 
 @media (max-width: 767px) {
+    .single-right h4 {font-size: 1.8em;margin-top: 10px;margin-bottom: 5px}
+    #bottom-tabs li {text-align: center;width: 50%;}
+    .bottom-cntr > form {float: left;margin-left: 40px;}
+    .bottom-cntr i {color: #FFF; font-size: 15px}
+    #cd-search1 .cd-search input {padding: .1em .5em;}
+    .header-xs h3.app-name a {width: 300%; float: left}
+    .social-icon {margin-top: 1.8em; padding-left: 15px;}
+    .social-icon a i {font-size: 35px}
     .product-social-share {margin-top: 0; color: #fff}
     .banner .item-image h1 {font-size: 60px}
     #about {padding-top: 10vh}

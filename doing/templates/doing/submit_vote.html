@@ -3,6 +3,14 @@
 
 {% block page_title %}<title>{% trans "Vote - Business Challenge - TCHOPETYAMO" %}</title>{% endblock %}
 
+{% block head_style %}
+    {{ block.super }}
+    <style>
+        .ok {background-color: #319dd5}
+        .cancel {background-color: #95a5a6}
+        .ok, .cancel {color: #fff}
+    </style>
+{% endblock %}
 {% block page_content %}
     <div class="vote">
         <div class="banner">
@@ -95,6 +103,40 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    {#    Modal declaration : BEGIN #}
+    <div class="modal fade" id="whatsapp-share" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-info">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{% trans "Share on WhatsApp" %}</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form onclick="return false" class="form-horizontal">
+                        <div class="form-group row">
+                            <label for="whatsapp-share-msg" class="col-sm-5 col-md-4">{% trans "Message" %}</label>
+                            <div class="col-sm-7 col-md-8">
+                                <textarea id="whatsapp-share-msg" style="height: 120px"
+                                          class="form-control input-sm">{% blocktrans %}Hello, I'm participating to a challenge of young entrepreneurs projects organized by N SARL. Would you like to help me win this challenge by liking and share to your nearest my project.Thanks you in advance{% endblocktrans %}</textarea>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="actions">
+                        <div class="col-xs-12 col-sm-4 col-md-3 pull-right action">
+                            <button class="btn btn-success btn-block btn-sm ok"
+                                    data-dismiss="modal" aria-label="OK">OK</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3 pull-right action">
+                            <button class="btn btn-default btn-block btn-sm cancel"
+                                    data-dismiss="modal" aria-label="Close">{% trans "Cancel" %}</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    Modal declaration : END #}
 {% endblock %}
 
 {% block js %}
@@ -151,6 +193,11 @@
                         ikwen.showFloatingNotice("{% trans 'You have already voted for ' %}" + project_name);
                     }
                 });
+            });
+            $('body').on('click', '#whatsapp-share .btn.ok', () => {
+                let msg = $('#whatsapp-share-msg').val(),
+                    url = '{{ service.url }}{{ current_url }}#{{ project.id }}';
+                window.location = 'https://api.whatsapp.com/send?text=' + url + '%0A%0A' + msg;
             });
         })()
     </script>

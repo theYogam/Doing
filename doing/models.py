@@ -21,7 +21,7 @@ class Competitor(Model):
     birth_town = models.CharField(_('Town of birth'), max_length=100)
     residence = models.CharField(_('Residence'), max_length=100)
     occupation = models.CharField(_('Occupation'), null=True, blank=True, max_length=100)
-    school = models.CharField(_('Occupation'), null=True, blank=True, max_length=100)
+    school = models.CharField(_('School'), null=True, blank=True, max_length=100)
     study_field = models.CharField(_('Field of study'), null=True, blank=True, max_length=100)
 
     def __unicode__(self):
