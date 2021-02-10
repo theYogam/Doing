@@ -87,8 +87,9 @@ class TrainingModule(Model):
     duration = models.PositiveIntegerField(_('Training module'), help_text=_('Rated in hours'), default=0)
 
 
-class ChallengeStep(Model):
+class News(Model):
     UPLOAD_TO = 'ChallengeSteps'
+    name = models.CharField(_("Name"), max_length=250)
     resume = models.TextField(_('Resume'))
     image = FileField(blank=True, null=True, allowed_extensions=['jpg', 'jpeg', 'png', 'heic'],
                       upload_to=UPLOAD_TO + '/Images', help_text=_("Upload a single image file here"))

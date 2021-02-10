@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from doing.views import Welcome, DownloadGuide, VoteList, ChangeProject, SubmitProject, \
     ProjectList, SubmitVote, ChangeCompetitor, CompetitorList, ChangeCategory, CategoryList, Partnership,\
-    ChangeReaction, ReactionList, Thanks
+    ChangeReaction, ReactionList, ChangeNews, NewsList, Thanks
 
 urlpatterns = patterns(
     '',
@@ -21,6 +21,10 @@ urlpatterns = patterns(
     url(r'^changeCategory/$', permission_required('doing.ik_manage_category')(ChangeCategory.as_view()), name='change_category'),
     url(r'^changeCategory/(?P<object_id>[-\w]+)$', permission_required('doing.ik_manage_category')(ChangeCategory.as_view()), name='change_category'),
     url(r'^CategoryList/$', permission_required('doing.ik_manage_category')(CategoryList.as_view()), name='category_list'),
+
+    url(r'^changeNews/$', permission_required('doing.ik_manage_news')(ChangeNews.as_view()), name='change_news'),
+    url(r'^changeNews/(?P<object_id>[-\w]+)$', permission_required('doing.ik_manage_news')(ChangeNews.as_view()), name='change_news'),
+    url(r'^NewsList/$', permission_required('doing.ik_manage_news')(NewsList.as_view()), name='news_list'),
 
     url(r'^changeProject/$', permission_required('doing.ik_manage_project')(login_required(ChangeProject.as_view())), name='change_project'),
     url(r'^submitProject/$', login_required(SubmitProject.as_view()), name='submit_project'),

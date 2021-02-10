@@ -19,7 +19,7 @@
             </div>
         </div>
         <div id="admin-content" class="change-form container">
-            <div class="col-sm-10">
+            <div>
                 {% for category in category_list %}
                     {% if category.project_set.all|length > 0 %}
                         <h1 class="text-center category-title">{{ category }}</h1>
@@ -94,7 +94,7 @@
                     {% endif %}
                 {% endfor %}
                 {% if category_list|length == 0 %}
-                    <div class="text-muted text-center col-sm-6" style="margin: 10px auto; float: none; height: 200px">
+                    <div class="text-muted text-center col-sm-12" style="margin: 10px auto; float: none; height: 200px">
                          <h3>{% trans 'No project submit yet...' %}</h3>
                     </div>
                 {% endif %}

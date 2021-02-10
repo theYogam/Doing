@@ -22,8 +22,8 @@ class TrainingModuleAdmin(admin.ModelAdmin):
     fields = ('name', 'document', 'duration')
 
 
-class ChallengeStepAdmin(admin.ModelAdmin):
-    fields = ('resume', 'image', 'video')
+class NewsAdmin(admin.ModelAdmin):
+    fields = ('name', 'resume',)
 
 
 class CompetitorAdmin(admin.ModelAdmin):

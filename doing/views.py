@@ -20,9 +20,9 @@ from ikwen.core.utils import get_model_admin_instance, get_preview_from_extensio
     get_mail_content, send_push
 
 from conf import settings
-from doing.models import Project, Vote, TrainingModule, ChallengeStep, Competitor, Category, Reaction
+from doing.models import Project, Vote, TrainingModule, News, Competitor, Category, Reaction
 from doing.admin import ProjectAdmin, VoteAdmin, TrainingModuleAdmin, \
-    ChallengeStepAdmin, CompetitorAdmin, CategoryAdmin, ReactionAdmin
+    NewsAdmin, CompetitorAdmin, CategoryAdmin, ReactionAdmin
 
 logger = logging.getLogger('ikwen')
 
@@ -172,16 +172,6 @@ class Partnership(TemplateView):
     template_name = 'doing/partnership.html'
 
 
-class ChallengeStepList(HybridListView):
-    model = ChallengeStep
-    model_admin = ChallengeStepAdmin
-
-
-class ChangeChallengeStep(ChangeObjectBase):
-    model = ChallengeStep
-    model_admin = ChallengeStepAdmin
-
-
 class TrainingModuleList(HybridListView):
     model = TrainingModule
     model_admin = TrainingModuleAdmin
@@ -215,6 +205,15 @@ class ChangeReaction(ChangeObjectBase):
 class ReactionList(HybridListView):
     model = Reaction
     model_admin = ReactionAdmin
+
+
+class NewsList(HybridListView):
+    model = News
+
+
+class ChangeNews(ChangeObjectBase):
+    model = News
+    model_admin = NewsAdmin
 
 
 class Thanks(TemplateView):
